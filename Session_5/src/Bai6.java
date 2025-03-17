@@ -39,6 +39,7 @@ public class Bai6 {
             }
         }
 
+
         for (int i = 0; i < markingArray.length; i++) {
             if (markingArray[i] == max) {
                 System.out.printf("Phần tử %d xuất hiện %d lần\n ", originalArray[i], max);

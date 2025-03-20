@@ -10,6 +10,7 @@ public class Main {
         boolean[] studentSexArray = new boolean[10];
         int size = 0; // kích thươớc thực tế
 
+        // dữ liệu mẫu
         studentIdArray[0] = "SV001";
         studentNameArray[0] = "Luong Hoang Bao Tran";
         studentDobArray[0] = "20/03/2005";
@@ -32,24 +33,29 @@ public class Main {
             byte choice = Byte.parseByte(sc.nextLine());
             switch (choice) {
                 case 1:
+                    // hiển thị danh sách sinh viên
                     showListStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
                     break;
                 case 2:
+                    // thêm mới sv
                     boolean isAdd = addStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
                     if (isAdd) {
                         size++;
                     }
                     break;
                 case 3:
+                    // chỉnh sửa thông tin sinh viên
                     editStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
                     break;
                 case 4:
+                    // xóa sv
                     boolean isDelete = deleteStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
                     if (isDelete) {
                         size--;
                     }
                     break;
                 case 5:
+                    // tìm kiếm theo tên
                     searchStudentByName(studentNameArray);
                     break;
                 case 0:
@@ -59,6 +65,7 @@ public class Main {
         }
     }
 
+    //function hiển thị danh sách sv
     public static void showListStudent(String[] studentIdArray, String[] studentNameArray, String[] studentDobArray, boolean[] studentSexArray, int size) {
         if (size == 0) {
             System.out.println("Danh sách rỗng");
@@ -68,6 +75,7 @@ public class Main {
         System.out.printf("  +%s+%s+%s+%s+\n", "-".repeat(7), "-".repeat(20), "-".repeat(12), "-".repeat(5));
         System.out.printf("  |%-7s|%-20s|%-12s|%-5s|\n", "ID", "Tên sinh viên", "Ngày sinh", "Sex");
         System.out.printf("  +%s+%s+%s+%s+\n", "-".repeat(7), "-".repeat(20), "-".repeat(12), "-".repeat(5));
+
         for (int i = 0; i < size; i++) {
             System.out.printf("%s.|%-7s|%-20s|%-12s|%-5s|\n", i + 1, studentIdArray[i], formatString(studentNameArray[i], 20), studentDobArray[i], studentSexArray[i] ? "Nam" : "Nữ");
             System.out.printf("+%s+%s+%s+%s+\n", "-".repeat(7), "-".repeat(20), "-".repeat(12), "-".repeat(5));
@@ -75,6 +83,7 @@ public class Main {
     }
 
     public static String formatString(String str, int maxLength) {
+        // nếu chuỗi dài hơn 20 kí tự thìchiri lấy 17 kí tu kèm theo 3 dấu "."
         if (str.length() > maxLength) {
             return str.substring(0, maxLength - 3).concat("...");
         }
@@ -101,14 +110,15 @@ public class Main {
         studentDobArray[size] = sc.nextLine();
         System.out.print("Nhập giới tính sv (Nam: true, Nữ: false): ");
         studentSexArray[size] = sc.nextBoolean();
-        return true;
 
+        return true;
     }
 
+    // hàm kiểm tra : 1. mã có đúng định dạng ko, 2. mã đã tồn tại chưa
     public static boolean validateId(String id, String[] studentIdArray) {
-
         if (id.matches("SV\\d{3}")) {
             for (int i = 0; i < studentIdArray.length; i++) {
+                // nếu đã tồn tại thì từ chối
                 if (id.equals(studentIdArray[i])) {
                     System.out.println("Id đã tồn tại");
                     return false;
@@ -121,17 +131,21 @@ public class Main {
         }
     }
 
+    // function tìm kiếm sv theo tên
     public static void searchStudentByName(String[] studentNameArray) {
         System.out.println("Nhập tên bạn cần tìm");
         String name = new Scanner(System.in).nextLine();
-        int count = 0;
-        boolean findName = false;
+        boolean findName = false; // xác định có tìm thấy tên phù hợp ko
+
         for (int i = 0; i < studentNameArray.length; i++) {
             if (studentNameArray[i] != null) {
                 String[] arr = studentNameArray[i].split(" ");
+
+                // kiểm tra bằng tên, ko lấy họ và tên đệm
                 String ten = arr[arr.length - 1];
+
                 if (name.equals(ten)) {
-                    System.out.printf("%d. %s\n", ++count, name);
+                    System.out.printf("- %s\n", name);
                     findName = true;
                 }
             }
@@ -144,11 +158,14 @@ public class Main {
         }
     }
 
+    // function chỉnh sửa thông tin sv
     public static void editStudent(String[] studentIdArray, String[] studentNameArray, String[] studentDobArray, boolean[] studentSexArray, int size) {
-        Scanner sc = new Scanner(System.in);
         showListStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
+
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhập thứ tự của học sinh muốn sửa thông tin: ");
         byte index = Byte.parseByte(sc.nextLine());
+
         while (true) {
             System.out.println("-------------------------");
             System.out.println("1. Id");
@@ -191,14 +208,17 @@ public class Main {
         }
     }
 
+    // function xóa sv
     public static boolean deleteStudent(String[] studentIdArray, String[] studentNameArray, String[] studentDobArray, boolean[] studentSexArray, int size) {
         if (size == 0) {
             System.out.println("Danh sách trông");
             return false;
         }
         showListStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
+
         System.out.print("Chọn thứ tự học sinh muốn xóa: ");
         byte index = Byte.parseByte(new Scanner(System.in).nextLine());
+
         for (int i = index - 1; i < size; i++) {
             studentIdArray[i] = studentIdArray[i + 1];
             studentNameArray[i] = studentNameArray[i + 1];

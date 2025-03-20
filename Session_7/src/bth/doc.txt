@@ -1,0 +1,19 @@
+đề bài:
+Xây dựng menu quản lí thông tin của sv gồm: id, name, dob, sex
+
+gồm các chức năng
+1. hiển thị dsach
+2. thêm mowis
+3. cập nhật thông tin
+4. xóa
+5. tìm kiếm theo tên
+0. thoát
+
+
+trong đó:
+id ko trùng lặp: chuỗi có 5 kí tự: bắt đầu bằng chữ s,v, 3 kí tự số phía sau
+name: ko đc để trống, độ dài từ 4-50 char
+dob: dd/mm/yy
+sex: true: nam, false: nữ
+
+dùng mảng 1 chiều String[] = {}

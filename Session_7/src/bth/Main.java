@@ -1,6 +1,5 @@
 package bth;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -37,19 +36,24 @@ public class Main {
                     break;
                 case 2:
                     boolean isAdd = addStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
-                   if (isAdd) {
-                       size++;
-                   }
+                    if (isAdd) {
+                        size++;
+                    }
                     break;
                 case 3:
                     editStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
                     break;
                 case 4:
+                    boolean isDelete = deleteStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
+                    if (isDelete) {
+                        size--;
+                    }
                     break;
                 case 5:
                     searchStudentByName(studentNameArray);
                     break;
                 case 0:
+                    System.out.println("Chương trình kết thúc");
                     break;
             }
         }
@@ -123,11 +127,13 @@ public class Main {
         int count = 0;
         boolean findName = false;
         for (int i = 0; i < studentNameArray.length; i++) {
-            String[] arr = studentNameArray[i].split(" ");
-            String ten = arr[arr.length - 1];
-            if (name.equals(ten)) {
-                System.out.printf("%d. %s\n", ++count, name);
-                findName = true;
+            if (studentNameArray[i] != null) {
+                String[] arr = studentNameArray[i].split(" ");
+                String ten = arr[arr.length - 1];
+                if (name.equals(ten)) {
+                    System.out.printf("%d. %s\n", ++count, name);
+                    findName = true;
+                }
             }
         }
 
@@ -142,13 +148,14 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         showListStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
         System.out.print("Nhập thứ tự của học sinh muốn sửa thông tin: ");
-        byte index = sc.nextByte();
+        byte index = Byte.parseByte(sc.nextLine());
         while (true) {
             System.out.println("-------------------------");
             System.out.println("1. Id");
             System.out.println("2. Họ tên");
             System.out.println("3. Ngày sinh");
             System.out.println("4. Giới tính");
+            System.out.println("5. Thoát");
             System.out.println("-------------------------");
 
             System.out.println("Nhập mục bạn muốn sửa");
@@ -158,8 +165,9 @@ public class Main {
                 case 1:
                     while (true) {
                         System.out.print("Nhập id mới: ");
-                        studentIdArray[index - 1] = sc.nextLine();
-                        if (validateId(studentIdArray[index - 1], studentIdArray)) {
+                        String temp = sc.nextLine();
+                        if (validateId(temp, studentIdArray)) {
+                            studentIdArray[index - 1] = temp;
                             break;
                         }
                     }
@@ -176,7 +184,28 @@ public class Main {
                     System.out.print("Nhập giới tính mới (Nam: true, Nữ: false): ");
                     studentNameArray[index - 1] = sc.nextLine();
                     break;
+                case 5:
+                    break;
             }
+            break;
         }
+    }
+
+    public static boolean deleteStudent(String[] studentIdArray, String[] studentNameArray, String[] studentDobArray, boolean[] studentSexArray, int size) {
+        if (size == 0) {
+            System.out.println("Danh sách trông");
+            return false;
+        }
+        showListStudent(studentIdArray, studentNameArray, studentDobArray, studentSexArray, size);
+        System.out.print("Chọn thứ tự học sinh muốn xóa: ");
+        byte index = Byte.parseByte(new Scanner(System.in).nextLine());
+        for (int i = index - 1; i < size; i++) {
+            studentIdArray[i] = studentIdArray[i + 1];
+            studentNameArray[i] = studentNameArray[i + 1];
+            studentDobArray[i] = studentDobArray[i + 1];
+            studentSexArray[i] = studentSexArray[i + 1];
+        }
+        System.out.println("Đã xóa xong.");
+        return true;
     }
 }

@@ -29,7 +29,6 @@ public class Main {
             System.out.println("0. Thoát");
             System.out.println("----------------------------------------------");
             System.out.println("Nhập lựa chọn ->>>>>");
-            System.out.print("Nhập sự lựa chọn: ");
             byte choice = Byte.parseByte(sc.nextLine());
             switch (choice) {
                 case 1:

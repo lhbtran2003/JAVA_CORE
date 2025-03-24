@@ -25,7 +25,7 @@ public class Bai5 {
                     while (true) {
                         System.out.print("Nhập độ dài n: ");
                         n = Integer.parseInt(sc.nextLine());
-                        if (n > 0 && n <= 100) {
+                        if (n > 0 && n <= 20) {
                             break;
                         }
                         System.out.println("Độ dài ko hợp lệ. Vui lòng nhập lại");

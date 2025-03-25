@@ -1,0 +1,38 @@
+1. Tính đóng gói là gì?
+ - Là cách để phân loại các lớp và các thành phần thành các nhóm co liên quan tới nhau để dễ quản lý
+
+   Tại sao tính đóng gói lại quan trọng trong lập trình đối tượng?
+ - Giup che dấu các thông tin của các đối tượng và cung cấp phương thức công khai (public API) để truy cập.
+
+2. Làm thế nào để áp dụng tính đóng gói trong Java?
+ - Sử dụng bổ từ truy cập private
+
+   Giải thích cách sử dụng các phương thức getter và setter.
+  - Getter dùng để lấy ra dữ liệu của các thuộc tính private
+  - Setter dùng để thay đổi dữ liệu của các thuộc tính private
+
+ 3. Cho ví dụ về cách sử dụng tính đóng gói trong một lớp có thuộc tính name, age (thuộc tính private),
+    và phương thức getter và setter để truy xuất và thay đổi giá trị của chúng.
+   - Class MainClass {
+       private String name;
+       private int age;
+
+       public String getName() {
+          return name;
+       }
+
+       public void setName (String name) {
+          this.name = name;
+       }
+
+        public int getAge() {
+          return age;
+       }
+
+       public void setAge (int age) {
+          this.age = age;
+       }
+   }
+
+4. Lợi ích của việc sử dụng tính đóng gói trong việc bảo vệ dữ liệu và kiểm soát quyền truy cập là gì?
+ - Bảo ve dlieu, kiểm soát quyền truy cập, duy trì tính toàn vẹn, ẩn chi tiết triển khai, tăng tính bảo mật

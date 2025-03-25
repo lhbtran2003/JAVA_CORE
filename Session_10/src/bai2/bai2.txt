@@ -1,0 +1,46 @@
+1. Kế thừa là gì?
+ - Kế thừa là một trong những nguyên lý cơ bản của lập trình hướng đối tượng (OOP)
+
+   Nó giúp ích gì trong lập trình hướng đối tượng?
+ - Cho phép tạo ra các lớp mới từ các lớp đã có.
+
+2. Sự khác biệt giữa kế thừa và bao đóng (encapsulation) trong Java là gì?
+ - Kế thừa là tạo ra lớp mới dựa trên lớp đã có, bao đóng là cách giúp hạn chế việc dữ liệu bị truy cập ko đúng cách.
+
+   Viết một ví dụ ngắn giải thích cách sử dụng từ khóa extends để tạo lớp con kế thừa các thuộc tính và phương thức từ lớp cha.
+ // Lớp cha
+ class Animal {
+     String name;
+
+     void makeSound() {
+         System.out.println("Animal makes a sound");
+     }
+ }
+
+ // Lớp con kế thừa từ Animal
+ class Dog extends Animal {
+     void makeSound() {
+         System.out.println("Dog barks");
+     }
+ }
+
+ public class Main {
+     public static void main(String[] args) {
+         Dog myDog = new Dog();
+         myDog.name = "Buddy";
+         System.out.println("Tên chó: " + myDog.name);
+         myDog.makeSound(); // Gọi phương thức ghi đè
+     }
+ }
+
+4. Hãy chỉ ra các lợi ích và hạn chế khi sử dụng kế thừa trong Java?
+   - Lợi ích:
+     + Tái sử dụng code
+     + Dễ dàng bảo trì
+     + Mở rộng tính năng
+     + Tăng tính linh hoạt
+   - Hạn chế:
+     + Nếu không được thiết kế đúng cách, kế thừa có thể dẫn đến mối quan hệ phức tạp giữa các lớp và tăng độ phức tạp của mã.
+     + Kế thừa có thể dẫn đến việc đồng bộ hóa các lớp con với các lớp cha, khiến cho việc thay đổi một lớp có thể dẫn đến các thay đổi phức tạp trong các lớp con.
+     + Kế thừa cũng có thể dẫn đến việc tạo ra các lớp con không cần thiết, khiến cho chương trình trở nên khó hiểu và khó bảo trì.
+     + Kế thừa cũng có thể giới hạn tính đa hình của chương trình, khiến cho chương trình trở nên khó mở rộng và khó bảo trì.

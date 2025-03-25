@@ -52,7 +52,7 @@ public class Fraction {
     }
 
     //toString(): Chuyển đổi phân số thành chuỗi có dạng "tử số/mẫu số" (ví dụ: 3/4).
-    @Override
+//    @Override
     public String toString() {
         return String.format("%d/%d", numerator, denominator);
     }

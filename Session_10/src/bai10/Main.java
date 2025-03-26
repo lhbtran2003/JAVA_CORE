@@ -8,9 +8,9 @@ public class Main {
         Circle c = new Circle("hình tròn", 2.2);
         Rectangle r = new Rectangle("Hình chu nhật", 3,5);
         Triangle t = new Triangle("Hình tam giác", 6,4,5);
-        System.out.println(c);
-        System.out.println(r);
-        System.out.println(t);
+//        System.out.println(c);
+//        System.out.println(r);
+//        System.out.println(t);
 
         List<Shape> arrShape = new ArrayList<Shape>();
         arrShape.add(c);

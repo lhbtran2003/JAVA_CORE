@@ -1,0 +1,3 @@
+Tính trừu tượng trong lập trình hướng đối tượng là quá trình (che dấu) các chi tiết phức tạp và chỉ hiển thị các (chi tiết) cần thiết cho người dùng.
+Trong Java, tính trừu tượng có thể được thực hiện bằng cách sử dụng (interface) hoặc (abstract class).
+Một ví dụ thực tế về tính trừu tượng là (máy ATM), nơi người dùng chỉ cần biết cách sử dụng mà không cần hiểu chi tiết bên trong.

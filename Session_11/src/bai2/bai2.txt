@@ -1,0 +1,32 @@
+Định nghĩa khái niệm tính trừu tượng trong OOP.
+ -- là tiến trình ẩn đi các chi tiết công khai mà chỉ hiển thị tính năng đến người dùng
+ -- cho phép loại bỏ tính phức tạp của đối tượng bằng cách chỉ đưa ra các thuộc tính và phương thức cần thiết của đối tượng.
+ -- giúp tập trung vào các cốt lõi cần thiết của đối tươngj
+
+
+Nêu ra các cách Java hỗ trợ tính trừu tượng (lớp trừu tượng, giao diện)
+ -- Interface, abstract class
+
+
+Liên hệ thực tế:
+Giả sử bạn sử dụng ứng dụng đặt xe như Grab hoặc Uber. Người dùng chỉ cần:
+
+Nhập điểm đến.
+Chọn loại xe.
+Nhấn đặt xe và chờ tài xế đến.
+Người dùng không cần biết chi tiết bên trong như:
+Ứng dụng xác định tài xế gần nhất như thế nào.
+Cách tính toán giá cước dựa trên khoảng cách, thời gian.
+Cách giao tiếp giữa máy chủ và ứng dụng trên điện thoại.
+Ứng dụng vào lập trình:
+Trong phần mềm, ta có thể sử dụng lớp trừu tượng để che giấu chi tiết thực thi. Ví dụ:
+Một lớp "ThanhToan" (Payment) có các phương thức như thanhToanQuaThe(), thanhToanBangViDienTu().
+Người dùng chỉ cần gọi thanhToan() mà không cần quan tâm ứng dụng đang sử dụng thẻ tín dụng hay ví điện tử.
+
+
+Phân tích ngắn gọn ưu điểm và hạn chế khi sử dụng tính trừu tượng.
+-- ưu:
+  -- ẩn dấu chi tiết triển khai
+  -- tạo ra các giao diện chung
+  -- tái sử dụng mã
+  -- đơn giản hóa các hệ thống phức tạp

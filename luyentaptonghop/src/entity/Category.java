@@ -54,7 +54,7 @@ public class Category implements IApp{
         this.description = description;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

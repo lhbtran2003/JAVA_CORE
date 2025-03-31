@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class InputMethod {
     public static final String ERROR_EMPTY_STRING = "Chuỗi ko được để trống";
     public static final String ERROR_INTEGER = "Chuỗi phải là một so nguyên";
+    public static final String ERROR_FLOAT = "Chuỗi phải là một so thực";
     public static final String ERROR_STATUS = "Trạng thái phải là 'true' hoặc 'false'";
     // quy định các phương thức nhập xuất cơ ban
 
@@ -28,7 +29,19 @@ public class InputMethod {
                 sc.nextLine();
                 continue;
             }
-            return sc.nextInt();
+            return Integer.parseInt(sc.nextLine());
+        }
+    }
+
+    public static float inputFloat(Scanner sc, String title) {
+        System.out.println(title);
+        while (true) {
+            if (!sc.hasNextFloat()) {
+                System.out.println(ERROR_INTEGER);
+                sc.nextLine();
+                continue;
+            }
+            return Float.parseFloat(sc.nextLine());
         }
     }
 

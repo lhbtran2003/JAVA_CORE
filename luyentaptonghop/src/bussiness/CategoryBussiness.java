@@ -101,7 +101,7 @@ public class CategoryBussiness {
 
     public static Category searchCategoryByName(String name) {
         for (int i = 0; i < categoriesSize; i++) {
-            if (categories[i].getCategoryName().equalsIgnoreCase(name)) {
+            if (categories[i].getCategoryName().contains(name)) {
                 return categories[i];
             }
         }

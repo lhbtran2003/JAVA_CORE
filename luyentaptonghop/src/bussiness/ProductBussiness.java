@@ -59,76 +59,60 @@ public class ProductBussiness {
 
 
     // cập nhật thông tin sản phẩm theo từng trường
-    public static void updateProduct(Scanner sc, String id) {
+    public static boolean updateProduct(Scanner sc, String id, int attribute) {
         if (!isProductExist(id)) {
             System.out.println("Danh mục ko tồn tại");
-            return;
+            return false;
         }
 
         for (int i = 0; i < productsSize; i++) {
             if (products[i].getProductId().equalsIgnoreCase(id)) {
 
-                while (true) {
-                    System.out.println("-------------------------------------------------------------------------------------------------------------");
-                    System.out.println("Nếu muốn kết thúc quá trình cap nhat, vui lòng nhập số 0");
-                    System.out.print("Nhập mục muốn chỉnh sửa (name, import price, export price, title, description, quantity, category id, status): ");
-                    String choice = sc.nextLine();
+                switch (attribute) {
+                    case 1:
+                        products[i].setProductName(inputProductName(sc));
+                        break;
 
-                    switch (choice) {
-                        case "name":
-                            products[i].setProductName(inputProductName(sc));
-                            System.out.println("Đã thay đổi tên sản phẩm.");
-                            break;
+                    case 2:
+                        products[i].setImportPrice(inputImportPrice(sc));
+                        break;
 
-                        case "import price":
-                            products[i].setImportPrice(inputImportPrice(sc));
-                            System.out.println("Đã thay đổi giá nhập sản phẩm.");
-                            break;
+                    case 3:
+                        products[i].setExportPrice(inputExportPrice(sc));
+                        break;
 
-                        case "export price":
-                            products[i].setExportPrice(inputExportPrice(sc));
-                            System.out.println("Đã thay giá bán sản phẩm.");
-                            break;
+                    case 4:
+                        products[i].setProductTitle(inputTitle(sc));
+                        break;
 
-                        case "title":
-                            products[i].setProductTitle(inputTitle(sc));
-                            System.out.println("Đã thay đổi tiêu đề spham.");
-                            break;
+                    case 5:
+                        products[i].setProductDescription(inputProductDescription(sc));
+                        break;
 
-                        case "description":
-                            products[i].setProductDescription(inputProductDescription(sc));
-                            System.out.println("Đã thay đổi mo tả sản phẩm");
-                            break;
+                    case 6:
+                        products[i].setQuantity(inputQuantity(sc));
+                        break;
 
-                        case "quantity":
-                            products[i].setQuantity(inputQuantity(sc));
-                            System.out.print("Done: ");
-                            break;
+                    case 7:
+                        products[i].setCategoryId(inputCategoryId(sc));
+                        break;
 
-                        case "category id":
-                            products[i].setCategoryId(inputCategoryId(sc));
-                            System.out.print("Done: ");
-                            break;
+                    case 8:
+                        products[i].setStatus(inputStatus(sc));
+                        if (products[i].getStatus() == 1) {
+                            products[i].setQuantity(0);
+                        }
+                        break;
 
-                        case "status":
-                            products[i].setStatus(inputStatus(sc));
-                            if (products[i].getStatus() == 1) {
-                                products[i].setQuantity(0);
-                            }
-                            System.out.print("Done.");
-                            break;
+                    case 0:
+                        break;
 
-                        case "0":
-                            return;
-
-                        default:
-                            System.out.println("Không hợp lệ");
-                            System.out.println("Nếu muốn kết thúc quá trình cap nhat, vui lòng nhập số 0");
-                    }
                 }
+
             }
 
         }
+        return true;
     }
 
     // xóa sản phẩm
@@ -141,7 +125,7 @@ public class ProductBussiness {
         }
         for (int i = 0; i < productsSize; i++) {
             if (products[i].getProductId().equalsIgnoreCase(id)) {
-                products[i] = products[i+1];
+                products[i] = products[i + 1];
             }
         }
         products[productsSize] = null;
@@ -198,22 +182,26 @@ public class ProductBussiness {
     }
 
     // bán sản phẩm
-    public static boolean sellProduct (String name, int quantity) {
-        if (productsSize == 0) {
-            System.out.println("Danh sách trống");
-            return false;
-        }
+    public static int sellProduct(String name, int quantity) {
+        if (isProductsEmpty()) return 1; // 1: danh sách rỗng
+
         for (int i = 0; i < productsSize; i++) {
             if (products[i].getProductName().equalsIgnoreCase(name)) {
                 if (products[i].getQuantity() == 0) {
-                    System.out.println("Không còn sản phẩm!");
-                    return false;
+                    return 2; // không còn sản phẩm
                 }
                 if (products[i].getQuantity() >= quantity) {
                     products[i].setQuantity(products[i].getQuantity() - quantity);
-                    return true;
+                    return 0; // đã bán thành công
                 }
             }
+        }
+        return 3;// bán thật bại
+    }
+
+    private static boolean isProductsEmpty() {
+        if (productsSize == 0) {
+            return true;
         }
         return false;
     }

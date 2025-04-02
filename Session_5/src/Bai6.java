@@ -9,6 +9,7 @@ public class Bai6 {
 
         for (int i = 0; i < originalArray.length; i++) {
             boolean isExist = false;
+            // xử lí mảng passArray
             for(Integer value : passArray){
                 if (value!=null && value == originalArray[i]){
                     isExist = true;
@@ -17,14 +18,17 @@ public class Bai6 {
             if(isExist){
                 continue;
             }
+
+            // xử lí đến mảng markingArray
             int count = 0;
             for (int value: originalArray) {
                 if (originalArray[i] == value ) {
                     count++;
                 }
             }
-            markingArray[i] = count;
+
             passArray[i] = originalArray[i];
+            markingArray[i] = count;
         }
 
         System.out.println(Arrays.toString(originalArray));
